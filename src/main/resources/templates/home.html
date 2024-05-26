@@ -140,14 +140,22 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
+                                <tr th:each="cred : ${credentials}">
                                     <td>
-                                        <button type="button" class="btn btn-success">Edit</button>
-                                        <a class="btn btn-danger">Delete</a>
+                                        <button
+                                                type="button"
+                                                class="btn btn-success"
+                                                th:data-parameter1="${cred.getCredentialId()}"
+                                                th:data-parameter2="${cred.getUrl()}"
+                                                th:data-parameter3="${cred.getUsername()}"
+                                                th:data-parameter4="${cred.getPassword()}"
+                                                th:onclick="showCredentialModal(this.getAttribute('data-parameter1'), this.getAttribute('data-parameter2'), this.getAttribute('data-parameter3'), this.getAttribute('data-parameter4'))"
+                                        >Edit</button>
+                                        <a th:href="@{credentials/__${cred.getCredentialId()}__}" class="btn btn-danger">Delete</a>
                                     </td>
-                                    <th scope="row">Example Credential URL</th>
-                                    <td>Example Credential Username</td>
-                                    <td>Example Credential Password</td>
+                                    <th th:text="${cred.url}" scope="row">Example Credential URL</th>
+                                    <td th:text="${cred.username}">Example Credential Username</td>
+                                    <td th:text="${cred.password}">Example Credential Password</td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -163,19 +171,19 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="#" method="POST">
-                                            <input type="hidden" name="credentialId" id="credential-id">
+                                        <form action="#" method="POST" th:object="${credential}" th:action="@{/credentials}">
+                                            <input type="hidden" name="credentialId" id="credential-id" th:field="*{credentialId}">
                                             <div class="form-group">
                                                 <label for="credential-url" class="col-form-label">URL</label>
-                                                <input type="text" name= "url" class="form-control" id="credential-url" maxlength="100" required>
+                                                <input type="text" name= "url" class="form-control" th:field="*{url}" id="credential-url" maxlength="100" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="credential-username" class="col-form-label">Username</label>
-                                                <input type="text" name= "username" class="form-control" id="credential-username" maxlength="30" required>
+                                                <input type="text" name= "username" class="form-control" th:field="*{username}" id="credential-username" maxlength="30" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="credential-password" class="col-form-label">Password</label>
-                                                <input type="text" name= "password" class="form-control" id="credential-password" maxlength="30" required>
+                                                <input type="text" name= "password" class="form-control" th:field="*{password}" id="credential-password" maxlength="30" required>
                                             </div>
                                             <button id="credentialSubmit" type="submit" class="d-none"></button>
                                         </form>

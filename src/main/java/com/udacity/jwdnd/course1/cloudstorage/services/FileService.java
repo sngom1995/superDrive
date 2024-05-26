@@ -32,7 +32,7 @@ public class FileService implements IFileService {
 
     @Override
     public void deleteFile(int fileId) {
-
+        fileMapper.deleteFile(fileId);
     }
 
     @Override

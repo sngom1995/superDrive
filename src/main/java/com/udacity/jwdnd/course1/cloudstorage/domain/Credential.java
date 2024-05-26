@@ -8,6 +8,8 @@ public class Credential {
     private String key;
     private Integer userid;
 
+
+
     public Credential() {
     }
 
@@ -74,5 +76,17 @@ public class Credential {
 
     public void setUserid(Integer userid) {
         this.userid = userid;
+    }
+
+    @Override
+    public String toString() {
+        return "Credential{" +
+                "credentialId=" + credentialId +
+                ", url='" + url + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", key='" + key + '\'' +
+                ", userid=" + userid +
+                '}';
     }
 }
