@@ -9,19 +9,19 @@ import java.util.List;
 public interface FileMapper {
 
     @Select("SELECT * FROM FILES WHERE userid=#{userId}")
-    List<File> findFilesByUserId(Integer userId);
+    List<File> findFilesByUserId(int userId);
 
-    @Insert("INSERT INTO files (filename, contenttype, filesize, userid, filedata) VALUES(#{filename}, #{contenttype}, #{filesize}, #{userid}, #{filedata})")
+    @Insert("INSERT INTO FILES (filename,contenttype,fileSize,filedata,userid) VALUES(#{filename},#{contenttype},#{fileSize},#{filedata},#{userid})")
     @Options(useGeneratedKeys = true, keyProperty = "fileId")
     int insertFile(File file);
 
-    @Delete("DELETE FROM files WHERE fileid = #{fileId}")
-    void deleteFile(Integer fileId);
+    @Delete("DELETE FROM FILES WHERE fileId = #{fileId}")
+    void deleteFile(int fileId);
 
-    @Select("SELECT * FROM files WHERE fileid = #{fileId}")
-    File findFileById(Integer fileId);
+    @Select("SELECT * FROM FILES WHERE fileId = #{fileId}")
+    File findFileById(int fileId);
 
-    @Select("SELECT * FROM files WHERE filename = #{fileName}")
+    @Select("SELECT * FROM FILES WHERE filename = #{fileName}")
     File findFileByFilename(String fileName);
 
 }

@@ -1,78 +1,74 @@
 package com.udacity.jwdnd.course1.cloudstorage.domain;
 
 public class File {
-    private Integer fileId;
-    private String fileName;
-    private String fileType;
-    private Integer fileSize;
-    private Integer userId;
-    private byte[] fileData;
+    private int fileId;
+    private String filename;
+    private  String contenttype;
+    private long fileSize;
+    private byte[] filedata;
+    private Integer userid;
 
-    public File() {
-    }
 
-    public File(byte[] fileData, Integer userId, Integer fileSize, String fileType, String fileName) {
-        this.fileData = fileData;
-        this.userId = userId;
+    public File(int file_id, String filename, String contenttype, long fileSize, byte[] filedata, Integer user_id) {
+        this.fileId = file_id;
+        this.filename = filename;
+        this.contenttype = contenttype;
         this.fileSize = fileSize;
-        this.fileType = fileType;
-        this.fileName = fileName;
+        this.filedata = filedata;
+        this.userid = user_id;
     }
-
-    public File(Integer fileId, String fileName, String fileType, Integer fileSize, Integer userId, byte[] fileData) {
-        this.fileId = fileId;
-        this.fileName = fileName;
-        this.fileType = fileType;
-        this.fileSize = fileSize;
-        this.userId = userId;
-        this.fileData = fileData;
+    public int getUser_id() {
+        return userid;
     }
-
-    public Integer getFileId() {
+    public void setUser_id(int user_id) {
+        this.userid = user_id;
+    }
+    public int getFileId() {
         return fileId;
     }
-
-    public void setFileId(Integer fileId) {
+    public void setFileId(int fileId) {
         this.fileId = fileId;
     }
-
-    public String getFileName() {
-        return fileName;
+    public String getFilename() {
+        return filename;
     }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
+    public void setFilename(String filename) {
+        this.filename = filename;
     }
-
-    public String getFileType() {
-        return fileType;
+    public String getContenttype() {
+        return contenttype;
     }
-
-    public void setFileType(String fileType) {
-        this.fileType = fileType;
+    public void setContenttype(String contenttype) {
+        this.contenttype = contenttype;
     }
-
-    public Integer getFileSize() {
+    public long getFileSize() {
         return fileSize;
     }
+    public void setFileSize(long l) {
+        this.fileSize = l;
+    }
+    public byte[] getFiledata() {
+        return filedata;
+    }
+    public void setFiledata(byte[] filedata) {
+        this.filedata = filedata;
+    }
+    public File() {
 
-    public void setFileSize(Integer fileSize) {
+    }
+    public File(String filename, String contenttype, long fileSize, byte[] filedata) {
+
+        this.filename = filename;
+        this.contenttype = contenttype;
         this.fileSize = fileSize;
+        this.filedata = filedata;
+    }
+    @Override
+    public String toString() {
+        return "Files [file_id=" + fileId + ", filename=" + filename + ", contenttype=" + contenttype + ", fileSize="
+                + fileSize + ", filedata=" + filedata + ", user_id=" + userid + "]";
     }
 
-    public Integer getUserId() {
-        return userId;
-    }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
 
-    public byte[] getFileData() {
-        return fileData;
-    }
-
-    public void setFileData(byte[] fileData) {
-        this.fileData = fileData;
-    }
 }
