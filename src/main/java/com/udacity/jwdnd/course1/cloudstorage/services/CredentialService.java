@@ -35,10 +35,7 @@ public class CredentialService implements ICredentialService {
 
     @Override
     public List<Credential> getAllCredentialByUserId(Integer userId) {
-        return credentialMapper.findCredentialsByUserId(userId).stream().map(credential -> {
-            credential.setPassword(encryptionService.decryptValue(credential.getPassword(), credential.getKey()));
-            return credential;
-        }).collect(Collectors.toList());
+        return credentialMapper.findCredentialsByUserId(userId);
     }
 
     @Override

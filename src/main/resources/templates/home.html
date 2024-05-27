@@ -149,7 +149,7 @@
                                                 th:data-parameter1="${cred.getCredentialId()}"
                                                 th:data-parameter2="${cred.getUrl()}"
                                                 th:data-parameter3="${cred.getUsername()}"
-                                                th:data-parameter4="${cred.getPassword()}"
+                                                th:data-parameter4="${encryptionService.decryptValue(cred.password, cred.key)}"
                                                 th:onclick="showCredentialModal(this.getAttribute('data-parameter1'), this.getAttribute('data-parameter2'), this.getAttribute('data-parameter3'), this.getAttribute('data-parameter4'))"
                                                 id="edit-credential-btn"
                                         >Edit</button>

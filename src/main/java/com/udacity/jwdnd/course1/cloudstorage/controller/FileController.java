@@ -50,17 +50,18 @@ public class FileController {
         if(uploadError!=null) {
             redirectAttributes.addFlashAttribute("error", uploadError);
             return "redirect:/result?error";
+        }else {
+            File fileEntity = new File();
+            System.out.println(file.getContentType());
+            fileEntity.setFilename(file.getOriginalFilename());
+            fileEntity.setContenttype(file.getContentType());
+            fileEntity.setUser_id(user.getUserId());
+            fileEntity.setFiledata(file.getBytes());
+            fileEntity.setFileSize(file.getSize());
+            System.out.println(fileEntity.toString());
+            fileService.createFile(fileEntity);
+            return "redirect:/result?success";
         }
-        File fileEntity = new File();
-        System.out.println(file.getContentType());
-        fileEntity.setFilename(file.getOriginalFilename());
-        fileEntity.setContenttype(file.getContentType());
-        fileEntity.setUser_id(user.getUserId());
-        fileEntity.setFiledata(file.getBytes());
-        fileEntity.setFileSize(file.getSize());
-        System.out.println(fileEntity.toString());
-        fileService.createFile(fileEntity);
-        return "redirect:/result?success";
     }
 
     @GetMapping("/files/delete/{fileId}")
